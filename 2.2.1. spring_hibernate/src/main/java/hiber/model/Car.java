@@ -1,6 +1,12 @@
 package hiber.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GenerationType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cars")
@@ -11,7 +17,8 @@ public class Car {
     private Long id;
 
     private String model;
-    @Column(name = "year")
+
+    @Column(name = "series")
     private int series;
 
     public Car() {
@@ -54,5 +61,17 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", series=" + series +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return series == car.series && Objects.equals(id, car.id) && Objects.equals(model, car.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, series);
     }
 }

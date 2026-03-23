@@ -32,7 +32,7 @@ public class MainApp {
         }
 
         System.out.println("=== ПОИСК ПО MAШИНЕ ===");
-        List<User> owners1 = userService.getUsersByCar("Car4", 2023);
+        List<User> owners1 = userService.getUsersByCar("Car6", 2028);
         if (!owners1.isEmpty()) {
             System.out.println("Владельцы по запросу модели и серии машины (" + owners1.size() + " чел.):");
             for (User owner : owners1) {
