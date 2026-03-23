@@ -4,13 +4,11 @@ import hiber.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserDaoImp implements UserDao {
 
     private final SessionFactory sessionFactory;
@@ -25,13 +23,11 @@ public class UserDaoImp implements UserDao {
         sessionFactory.getCurrentSession().save(user);
     }
 
-    @Transactional(readOnly = true)
     public List<User> listUsers() {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<User> getUsersByCar(String model, int series) {  // List вместо User
         return sessionFactory.getCurrentSession()
